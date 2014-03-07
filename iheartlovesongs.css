@@ -1,0 +1,284 @@
+
+body {
+	width:800px;
+	margin-left: auto;
+	margin-right: auto;
+	background-image:url('vintage_grid.jpeg');
+	font-family: 'Raleway', sans-serif;
+	/*color:#2F4F4F;*/
+	color:#00008B;
+}
+
+	
+/*a { text-decoration: none;  color:#528B8B;}
+a:visited { text-decoration: none; color: #388E8E ;}
+a:hover { text-decoration: none; color: #96CDCD; }*/
+
+	
+a { text-decoration: none;  color:#00008B;}
+a:visited { text-decoration: none; color: #800000;}
+a:hover { text-decoration: none; color: #DAA520; }
+
+
+
+
+
+/** navigation  **/
+div#nav ul, li {
+	font-family: 'Raleway', sans-serif;
+		list-style: none;
+		display: inline;
+		padding: 2px 16px;
+		font-size: 1.1em;
+		border: 0px solid #CCFF66;
+	}
+
+h1{
+	font-family: 'Raleway', sans-serif;
+	padding-left: 85px;
+	padding-right:10px;
+}
+
+.myheader {
+font-family: 'Raleway', sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	 width: 8em; 
+	font-size: 50px;
+	padding-left: 180px;
+	text-shadow: 4px -6px 8px rgba(150, 150, 150, 0.81);
+	padding-top: 35px;
+	padding-bottom: 35px;
+	
+}
+
+
+
+table, tr, th, td { 
+		margin: auto;
+background-color:#8FBC8F;
+border: 1px solid gray; }
+td.column1 { text-align: center; width: 30px; }
+ td.column2 { text-align: right; width: 40px; }
+ td.column3 { text-align: right; width: 40px; }
+ td.buttons { text-align: left; }
+input { text-align: right;}
+textarea { text-align: left; }
+
+div#buttons{padding-left: 350px;
+	padding-right:100px;}
+	
+div#morebuttons {padding-left: 275px;
+	padding-right:100px;
+padding-top:10px;}
+
+.myspace{
+padding-top: 25px;
+}
+
+.gallerytbl{
+background-color:#CDCDCD;
+background-image:url('azroute70map1.jpg');
+padding-top:25px;
+padding-left:40px;
+padding-bottom:25px;
+border: 1px solid gray;
+}
+	
+div#footer {padding-left: 300px;
+	padding-top:25px;
+	padding-right:100px;}
+
+	
+#myimage 
+{
+clear:both;
+padding-top: 35px;
+padding-bottom: 35px;
+padding-left: 35px;
+padding-right: 35px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.selectedimage {
+clear:both;
+background-image:url('azroute70map1.jpg');
+margin-left: auto;
+margin-right: auto;
+width:800px;
+-webkit-box-shadow: -1px 10px 3px rgba(50, 50, 50, 0.88);
+-moz-box-shadow:    -1px 10px 3px rgba(50, 50, 50, 0.88);
+box-shadow:         -1px 10px 3px rgba(50, 50, 50, 0.88);
+-moz-border-radius-topleft: 20px;
+-webkit-border-top-left-radius: 20px;
+ border-top-left-radius: 20px;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 19px;
+-webkit-border-bottom-right-radius: 19px;
+border-bottom-right-radius: 19px;
+-moz-border-radius-bottomleft: 20px;
+-webkit-border-bottom-left-radius: 20px;
+border-bottom-left-radius: 20px;
+border: 3px dashed #696969;
+padding: 10px;
+height: 500px;
+}
+
+.myspace{padding-bottom: 35px;}
+
+table.myfix
+{
+margin-left: auto;
+margin-right: auto;
+  padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: middle;
+    background: transparent;
+}
+
+td.myfix  {
+margin-left: auto;
+margin-right: auto;
+  padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: middle;
+    background: transparent;
+}
+
+tr.myfix {
+ margin-left: auto;
+margin-right: auto;
+  padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align:middle;
+    background: transparent;
+}
+
+.rightarr {
+font-size: 100px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.leftarr {
+font-size: 100px;
+margin-left: auto;
+margin-right: auto;
+}
+
+
+table.myfix2
+{
+margin-left: auto;
+margin-right: auto;
+  padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: middle;
+    background: transparent;
+}
+
+td.myfix2  {
+margin-left: auto;
+margin-right: auto;
+  padding: 10px;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: middle;
+    background: transparent;
+}
+
+tr.myfix2 {
+ margin-left: auto;
+margin-right: auto;
+  padding: 10px;
+ border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align:middle;
+    background: transparent;
+}
+
+.originals {
+font-size:30px;
+}
+
+.singlelinks {
+font-size: 30px;
+}
+
+.airmail {
+clear:both;
+background-image:url('airmail2.jpeg');
+margin-left: auto;
+margin-right: auto;
+width:800px;
+-webkit-box-shadow: -1px 10px 3px rgba(50, 50, 50, 0.88);
+-moz-box-shadow:    -1px 10px 3px rgba(50, 50, 50, 0.88);
+box-shadow:         -1px 10px 3px rgba(50, 50, 50, 0.88);
+-moz-border-radius-topleft: 20px;
+-webkit-border-top-left-radius: 20px;
+ border-top-left-radius: 20px;
+-moz-border-radius-topright: 20px;
+-webkit-border-top-right-radius: 20px;
+border-top-right-radius: 20px;
+-moz-border-radius-bottomright: 19px;
+-webkit-border-bottom-right-radius: 19px;
+border-bottom-right-radius: 19px;
+-moz-border-radius-bottomleft: 20px;
+-webkit-border-bottom-left-radius: 20px;
+border-bottom-left-radius: 20px;
+}
+
+#preview-container
+{
+border: 3px dashed #696969;
+padding: 10px;
+}
+
+
+
+table.myfix3
+{
+margin-left: auto;
+margin-right: auto;
+  padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: middle;
+    background: transparent;
+}
+
+td.myfix3  {
+margin-left: auto;
+margin-right: auto;
+  padding: 10px;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: middle;
+    background: transparent;
+}
+
+tr.myfix3 {
+ margin-left: auto;
+margin-right: auto;
+  padding: 10px;
+ border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align:middle;
+    background: transparent;
+}

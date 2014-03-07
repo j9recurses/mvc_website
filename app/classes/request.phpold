@@ -1,0 +1,159 @@
+<?php
+    class Request {
+
+        private function __construct() {}
+
+        static function run() {
+
+            $r = new Request;
+            $r->parse();
+            $klass = $r->controller . 'Controller';
+
+            // polymorphism
+            if(class_exists($klass)) {
+                $obj = new $klass($r);
+            }
+            else {
+                $obj = new DefaultController($r);
+                $obj->action = 'error404';                
+            }
+
+            $obj->render();
+            // For testing
+            return $r;
+            exit;
+        }
+
+        function parse() {
+
+            $regex = '/^[\w]+$/';
+            $id_regex = '/^[\w]*$/';
+
+            // Request for controller
+            if(isset($_REQUEST['_r'])) {
+                $parts = explode('/',$_REQUEST['_r']);
+                $this->controller = 'default';
+                $this->action     = 'index';
+                $this->id         = '';
+
+                if(count($parts) == 3) {
+                    list($this->controller,$this->action,$this->id) = $parts;
+                }
+                elseif(count($parts) == 2) {
+                    list($this->controller,$this->action) = $parts;
+                }
+                elseif(count($parts) == 1) {
+                    $this->controller = $parts[0];
+                }
+                if(!(preg_match($regex,$this->controller) &&
+                    preg_match($regex,$this->action) && 
+                       preg_match($id_regex,$this->id))) {
+                    $this->controller = 'default';
+                    $this->action     = 'error404';
+                    $this->id         = '';
+                }
+            }
+            else {
+                $this->controller = 'default';
+                $this->action     = 'index';
+                $this->id         = '';
+            }
+
+            foreach($_REQUEST as $k => $v) {
+                if($k == '_r' || $k == 'controller' || $k == 'action' || $k == 'id') {
+                    continue;
+                }
+                $k = strtolower($k);
+                $v = htmlentities(strtolower($v),ENT_QUOTES,'UTF-8');
+                $this->$k = $v;
+            }
+        }
+    }
+
+//////////////////// TESTING ///////////////////////
+if(isset($argv) && $argv[0] == basename(__FILE__)) {
+    // TEST CLASSES
+    
+    class ApplicationController {
+        function __construct(Request $r) { 
+            $this->REQUEST = $r; 
+        }
+
+        function index() { 
+        }
+        function error404(){ 
+            return "ERROR 404"; 
+        }
+        function render() {
+            $as = 'html';
+            if(isset($this->REQUEST->as)) {
+                $as = $this->REQUEST->as;
+            }
+            // at this point we pass this to a decorator 
+
+            // include the VIEW
+            print 'I am rendering as hard as I can...';
+            $action = $this->REQUEST->action;
+            if(method_exists($this->REQUEST->controller .'Controller',$action)) {
+                $this->$action();
+            }
+            else {
+                $obj = new DefaultController(new Request);
+                $obj->error404();
+            }
+        }
+    }
+
+    class UsersController extends ApplicationController {
+        function info() { 
+            print "I'm " . __METHOD__; 
+        }
+        function index() {
+            print 'I am alive.';
+        }
+    }
+
+    class DefaultController extends ApplicationController {
+       // function __construct(Request $r) { parent::__construct($r); }
+        function index() {}
+        function error() {}
+    }
+
+    print 'RUNNING TESTS ... ' . "\n";
+    $strings = <<<END
+_r=users/info/99
+_r=users/info
+_r=users
+_r=
+_r=rm -rf *
+_r=users/info/99&controller=delete&action=/etc/passwd&id=cat /etc/group
+_r=users/info/99&color=blue&size=43&sku=abc123
+_r=users&color=blue&size=43&sku=abc123
+color=blue&size=43&sku=abc123
+_r=%20users/%20info&color=blue&size=43
+END;
+    $strings = explode("\n",$strings);
+    foreach($strings as $s) {
+        $parts = explode('&',$s);
+        foreach($parts as $p) {
+            $pp = explode('=',$p);
+            $_REQUEST[$pp[0]] = $pp[1];
+        }
+        $r = Request::run();
+        print "\n--------------------\n";
+        print "TESTING: $s \n";
+        print "--------------------\n";
+        print 'Controller :: ' . $r->controller;
+        print "\n";
+        print 'Action :: ' . $r->action;
+        print "\n";
+        print 'Id :: ' . $r->id;
+        print "\n";
+        foreach($r as $k =>$v) {
+            if($k == 'controller'||$k == 'action'||$k == 'id') continue;
+            print "$k :: $v\n";
+        }
+        unset($_REQUEST);
+    }
+}
+?> 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Janine's Resume Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+		}
+	
+		
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?AIzaSyBnSRmwNgNDW2W6K_V6-23mKOPYdQwcpao&sensor=false"></script>
+    <script>
+var map;
+//var mycenter= new google.maps.LatLng(39.810316,-98.555481);
+var mycenter = new google.maps.LatLng(37.7833, -122.4167);
+var MY_MAPTYPE_ID = 'custom_style';
+
+function initialize() {
+
+  var featureOpts = [
+    {
+      stylers: [
+        { hue: '#A9C9A4' },
+        { visibility: 'simplified' },
+        { gamma: 0.5 },
+        { weight: 0.5 }
+      ]
+    },
+    {
+      elementType: 'labels',
+      stylers: [
+        { visibility: 'off' }
+      ]
+    },
+    {
+      featureType: 'water',
+      stylers: [
+        { color: '#5F755E' }
+      ]
+    }
+  ];
+
+  var mapOptions = {
+    zoom: 10,
+    center: mycenter,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+    },
+    mapTypeId: MY_MAPTYPE_ID
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var styledMapOptions = {
+    name: 'Custom Style'
+  };
+
+  var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+
+  map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+  
+var lineCoords = [ 
+
+new google.maps.LatLng(41.300508,-82.219331),
+
+new google.maps.LatLng(41.300508,-82.219331),
+new google.maps.LatLng(30.286309,-97.729379),
+new google.maps.LatLng(41.300508,-82.219331),
+new google.maps.LatLng(38.88492,-77.008502),
+new google.maps.LatLng(37.78374,-122.419391),
+new google.maps.LatLng(37.872753,-122.258276)
+	];
+
+var lineOpts = { 
+    path: lineCoords,
+    map: map,
+    strokeColor: "#00008B",
+    strokeOpacity: 1.0,
+    strokeWeight: 4
+};
+
+var line = new google.maps.Polyline(lineOpts);
+
+var oberlin= new google.maps.LatLng(41.300508,-82.219331);
+
+var lbjlib =  new google.maps.LatLng(30.286309,-97.729379);
+var dnc = new google.maps.LatLng(38.88492,-77.008502);
+var ucb = new google.maps.LatLng(30.286309,-97.729379);
+var sanfran = new google.maps.LatLng(37.788285,-122.388514);
+var ccsf  = new google.maps.LatLng(37.727654,-122.45263);
+var ucb = new google.maps.LatLng(37.8700, -122.2590);
+var swdb =  new google.maps.LatLng(37.8699, -122.2534);
+
+function createMarker(point,info,map) {
+  var myMarkerOpts = {
+    position: point,
+    map: map
+  };
+
+  var marker = new google.maps.Marker(myMarkerOpts);
+
+  var infoWindowOpts = { content: info };
+  var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infoWindow.open(map,marker); 
+  });
+}
+createMarker(oberlin, '<b>EDUCATION<\/b><br>Oberlin College, Oberlin, OH, BA with high honors; 2007 <br>Majors: Politics, Religion; Overall GPA: 3.53',map);
+createMarker(lbjlib,'<b>ACADEMIC RESEARCH GRANT<\/b><br>Moody Grant, Awarded by the Lyndon B. Johnson Foundation, The Lyndon Baines Johnson Library, Austin, TX, January 2007 <ul>Conducted research at the Lyndon B. Johnson National Presidential Library for senior honors thesis and a journal article in a special issue of Presidential Studies Quarterly.<\/ul>',map); 
+createMarker(dnc,'<b>WORK EXPERIENCE<\/b><br>Democratic National Committee, Technology Department, National Voter Database Project, Data Analyst, Washington, DC and San Francisco, CA, August 2007-November 2012 <br> <ul>Helped develop and maintain the data infrastructure for the Voter Activation Networks online field campaign software, a tool used by the Obama For America Campaign, Democratic candidates, as well as national progressive political organizations and unions to organize and mobilize voters. (http://www.ngpvan.com/smartvan) <br><br> Conducted research as required to verify the integrity of the state voter data. Helped plan, design and develop automated scripts for auditing voter data for quality assurance.<\/ul>', map);
+createMarker(ccsf,'<b>EDUCATION<\/b><br>City College, San Francisco, California June 2011-May 2013<br>Completed coursework in Java, PHP, Python, Android programming, Ruby, JavaScript, Perl, Apache, and MySQL administration', map);
+createMarker(sanfran,'<b>WORK EXPERIENCE<\/b><br>INgrooves Fontana, Software Quality Assurance Engineer/LifeCycle Technician, San Francisco, CA, December 2012-Sept 2013 <br><ul>Created and implemented automated test procedures for new accounting software features. Evaluated software functionality; identified and tracked software defects.<br><br> Helped to administer company databases and optimized SQL queries that queried application database tables as required. Tables contained up to 324 million records of transactional data.	<br><br>Assisted in configuring and deploying INgrooves web server environments, deployed new versions of software to INgrooves web server.<\/ul>', map);
+
+createMarker(ucb,'<b>EDUCATION<\/b><br> University of California, Berkeley, Masters of Information Management and Systems (MIMS), School of Information 2013 – 2015 (expected)<br>Two-year full time program, focused on the theory and practice of storing, organizing, retrieving and analyzing information in a variety of settings', map);
+
+createMarker(swdb, '<Work Experiance<\/b> Graduate Student Researcher, September 2013 – Present UC Berkeley School of Law, Statewide Database Project<br><ul> Administered the Statewide Databases web servers.Tasks included administering dev/QA/production websites, apache administration, andmanaging user accounts and file systems. <br><br>Developed and maintained statewidedatabase.orgs infrastructure and pages using PHP/HTML/Javascript.<br>Designed, created and maintained Statewide Database projects database system<br><br>Maintained the Statewide Database projects firewall and local area network (LAN).Installed and maintained a network of windows/linux servers using samba.<\/ul>',map);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+ </script>
+ 
+   
+  <!-- CSS: implied media="all" -->
+<link rel="stylesheet" href="http://www.iheartlovesongs.com/css/iheartlovesongs.css">
+<link rel="stylesheet" href="http://www.iheartlovesongs.com/js/css/prettyGallery.css" type="text/css" media="screen" charset="utf-8" />
+<script type="text/javascript">
+document.write("<table border='0' bgcolor='#f5f5dc'>");
+
+<!-- class="nav" calls in CSS rule for the navigation bar -->
+
+document.write("<tr class='nav'>");
+
+document.write("<tr><td><a href='../../?_r=default'>Home</a></td><td>&nbsp;|&nbsp;</td><td><a href='../lovesongs/lovesongs'>Love Songs</a></td> <td>&nbsp|&nbsp;</td>");
+document.write("<td><a href ='../../?_r=ecards/gallery'>Ecards</a></td><td>&nbsp|&nbsp;</td><td><a href='../../?_r=about/about'>About</a></td><td>&nbsp|&nbsp;</td><td>");
+document.write("<a href='../../?_r=languages/languages'>Languages</a></td></tr></table>");
+document.write("</div>");
+</script>
+
+ 
+ 
+ 
+ </head>
+  <body>
+  <h1>Janine's Resume Atlas</h1>
+  <h3><i> Click on the markers for details...</i></h3>
+  <div id="map-canvas">  </div>
+  </body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Janine's Resume Map</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+		}
+	
+		
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?AIzaSyBnSRmwNgNDW2W6K_V6-23mKOPYdQwcpao&sensor=false"></script>
+    <script>
+var map;
+var mycenter= new google.maps.LatLng(39.810316,-98.555481);
+var MY_MAPTYPE_ID = 'custom_style';
+
+function initialize() {
+
+  var featureOpts = [
+    {
+      stylers: [
+        { hue: '#A9C9A4' },
+        { visibility: 'simplified' },
+        { gamma: 0.5 },
+        { weight: 0.5 }
+      ]
+    },
+    {
+      elementType: 'labels',
+      stylers: [
+        { visibility: 'off' }
+      ]
+    },
+    {
+      featureType: 'water',
+      stylers: [
+        { color: '#5F755E' }
+      ]
+    }
+  ];
+
+  var mapOptions = {
+    zoom: 4,
+    center: mycenter,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+    },
+    mapTypeId: MY_MAPTYPE_ID
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  var styledMapOptions = {
+    name: 'Custom Style'
+  };
+
+  var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+
+  map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+  
+var lineCoords = [ 
+new google.maps.LatLng(35.915469,-79.054585),
+new google.maps.LatLng(41.300508,-82.219331),
+new google.maps.LatLng(40.663712,-73.949174),
+new google.maps.LatLng(41.300508,-82.219331),
+new google.maps.LatLng(30.286309,-97.729379),
+new google.maps.LatLng(41.300508,-82.219331),
+new google.maps.LatLng(38.88492,-77.008502),
+new google.maps.LatLng(37.78374,-122.419391),
+new google.maps.LatLng(37.872753,-122.258276)
+	];
+
+var lineOpts = { 
+    path: lineCoords,
+    map: map,
+    strokeColor: "#00008B",
+    strokeOpacity: 1.0,
+    strokeWeight: 4
+};
+
+var line = new google.maps.Polyline(lineOpts);
+
+var ch = new google.maps.LatLng(35.915469,-79.054585);
+var oberlin= new google.maps.LatLng(41.300508,-82.219331);
+var fe =  new google.maps.LatLng(40.663712,-73.949174);
+var lbjlib =  new google.maps.LatLng(30.286309,-97.729379);
+var dnc = new google.maps.LatLng(38.88492,-77.008502);
+var ucb = new google.maps.LatLng(30.286309,-97.729379);
+var sanfran = new google.maps.LatLng(37.788285,-122.388514);
+var ccsf  = new google.maps.LatLng(37.727654,-122.45263);
+
+
+function createMarker(point,info,map) {
+  var myMarkerOpts = {
+    position: point,
+    map: map
+  };
+
+  var marker = new google.maps.Marker(myMarkerOpts);
+
+  var infoWindowOpts = { content: info };
+  var infoWindow = new google.maps.InfoWindow(infoWindowOpts);
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infoWindow.open(map,marker); 
+  });
+}
+
+createMarker(ch,'<u><b>Origins<\/u><\/b><br>Grew up in Chapel Hill, NC,<\/div>',map);
+createMarker(oberlin, '<u><b>Education<\/u><\/b><br>Oberlin College, Oberlin, OH, BA with high honors; 2007 <br>Majors: Politics, Religion; Overall GPA: 3.53',map);
+createMarker(fe,'<div id = "mybullets"><u><b>Work Experiance<\/u><\/b><br>Yvette Clarke for US Congress Campaign, Finance Associate, Brooklyn, NY, June 2006-September 2006<br><ul><li>Completed follow-up with high-dollar donors, initiated fundraising drives with low-dollar donors, tracked pledges, organized fundraising events, and provided assistance to the candidate.<\/li><\/ul><\/div>',map);  
+createMarker(lbjlib,'<div id = "mybullets"><u><b>Academic Research Award <\/u><\/b><br> Moody Grant, Awarded by the Lyndon B. Johnson Foundation, The Lyndon Baines Johnson Library, Austin, TX, January 2007 <ul><li>Conducted research at the Lyndon B. Johnson National Presidential Library for senior honors thesis and a journal article in a special issue of Presidential Studies Quarterly<\/li><\/ul><\/div>.',map); 
+createMarker(dnc,'<div id = "mybullets"><u><b>Work Experiance<\/u><\/b><br>Democratic National Committee, Technology Department, National Voter Database Project, Data Analyst, Washington, DC and San Francisco, CA, August 2007-November 2012 <br><ul><li>Helped develop and maintain the data infrastructure and provided quality assurance for the Democratic Party’s online voter data management tool, Voter Activation Network (VAN), used by the Obama For America Campaign, democratic candidates, national progressive political organizations to organize and mobilize voters. (http://www.ngpvan.com/smartvan)<\/li><li>Assisted in developing and maintaining Java-based ETL database tools and processes to cleanse, standardize and manage several terabytes of data from public and private sources about voters and voting districts.<\/li><li>Planned, designed, and developed automated scripts, stored procedures, and database queries for auditing voter data for quality assurance.<\/li><li>Conducted data analysis and research as required to verify the integrity of state voter data; assured data accuracy prior to client delivery; made certain the errors or inefficiencies detected within the data were corrected immediately to ensure timely completion of projects.<\/li><li>Wrote and ran highly complex SQL queries involving multiple datasets to analyze data for campaign research reports and memos. <\/li><li>Worked with democratic clients from around the county to capture and analyze new data; performed bulk uploads of data as required. <\/li><li>Wrote and tested highly complex SQL queries involving multiple datasets to pull targeted lists of voters for direct mail and phone campaigns. <\/li><li>Assisted in creating and developing statistical models for voter microtargeting and fundraising projects.<\/li><\/ul>\/div',map);
+createMarker(ccsf,'<u><b>Education<\/u><\/b><br>City College, San Francisco, California June 2011-May 2013<br>Completed coursework in Java, PHP, Python, Android programming, Ruby, JavaScript, Python, Apache, and MySQL administration', map);
+createMarker(sanfran,'<div id = "mybullets"><u><b>Work Experiance<\/u><\/b><br>INgrooves Fontana, Software Quality Assurance Engineer/LifeCycle Technician, San Francisco, CA, December 2012-Current <ul><li>Created and implemented test procedure for new accounting software features; evaluated software functionality; identified and tracked software defects.<\/li><li>Isolated and logged software bugs and errors; added to test case libraries. <\/li><li> Optimized SQL queries that queried application database tables as required; tables contained up to 324 million records of transactional data.<\/li><li>	Assisted in configuring and deploying INgrooves web server environments, deployed new versions of software to INgrooves web servers, assisted in database administration related tasks. <\/li><li>	Provided software support; investigated software issues reported by users.<\/li><\/ul><div>', map);
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+   
+  <!-- CSS: implied media="all" -->
+<link rel="stylesheet" href="http://www.iheartlovesongs.com/css/iheartlovesongs.css">
+<link rel="stylesheet" href="http://www.iheartlovesongs.com/js/css/prettyGallery.css" type="text/css" media="screen" charset="utf-8" />
+  </head>
+  <body>
+  <h1>Janine's Resume Map</h1>
+  <h3> Click on the markers for details...</h3>
+  <div id="map-canvas">  </div>
+  </body>
+</html>
